@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   map_check.c                                        :+:    :+:            */
+/*   map_read.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/09 12:45:18 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/02/09 13:50:36 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/02/09 16:50:34 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int		size_count(int fd)
 	return (count);
 }
 
-char			*map_read(char *file)
+char			**map_read(char *file)
 {
 	int		fd;
 	int		size;
@@ -34,7 +34,7 @@ char			*map_read(char *file)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_printf("Error\n");
+		ft_printf("%s", MAPERROR);
 		return (0);
 	}
 	size = size_count(fd);
@@ -43,5 +43,68 @@ char			*map_read(char *file)
 	fd = open(file, O_RDONLY);
 	ret = read(fd, output, size);
 	close(fd);
-	return (output);
+	if (!ft_strchr(output, 'P'))
+		{
+			ft_printf("%s", MAPERROR);
+			return (0);
+		}
+	if (!ft_strchr(output, 'E'))
+		{
+			ft_printf("%s", MAPERROR);
+			return (0);
+		}
+	if (!ft_strchr(output, 'C'))
+		{
+			ft_printf("%s", MAPERROR);
+			return (0);
+		}
+	
+	char	**map;
+	map = ft_split(output, '\n');
+	int i = 0;
+	int j = 0;
+
+	while (map[i][j])
+	{
+		if (map[i][j] != '1')
+		{
+			ft_printf("%s", MAPERROR);
+			return (0);
+		}
+		j++;
+	}
+	ft_printf("loop 1: %d, %d\n", i, j);
+	j--;
+	while (map[i])
+	{
+		if (map[i][j] != '1')
+		{
+			ft_printf("%s", MAPERROR);
+			return (0);
+		}
+		i++;
+	}
+	ft_printf("loop 2: %d, %d\n", i, j);
+	i--;
+	while (j > 0)
+	{
+		if (map[i][j] != '1')
+		{
+			ft_printf("%s", MAPERROR);
+			return (0);
+		}
+		j--;
+	}
+	ft_printf("loop 3: %d, %d\n", i, j);
+	while (i > 0)
+	{
+		if (map[i][j] != '1')
+		{
+			ft_printf("%s", MAPERROR);
+			return (0);
+		}
+		i--;
+	}
+	ft_printf("loop 4: %d, %d\n", i, j);
+	return (map);
 }

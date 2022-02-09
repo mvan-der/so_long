@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   so_long.c                                          :+:    :+:            */
+/*   ft_strdup.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/09 10:46:48 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/02/09 13:50:34 by mvan-der      ########   odam.nl         */
+/*   Created: 2020/11/05 10:16:59 by mvan-der      #+#    #+#                 */
+/*   Updated: 2020/11/26 15:03:42 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include <stdlib.h>
+#include "libft.h"
 
-int main(int argc, char *argv[])
+char	*ft_strdup(const char *s)
 {
-	if (argc != 2)
-	{
-		ft_printf("No map provided or too many maps provided\n");
-		return (0);
-	}
-	char *str;
+	char	*dest;
+	size_t	i;
 
-	str = map_read(argv[1]);
-	ft_printf("%s\n", str);
-	// ft_printf("%c\n", str[33]);
-	// ft_printf("%c\n", str[34]);
-	// ft_printf("%c\n", str[35]);
-	return (0);
+	dest = malloc(ft_strlen(s) + 1);
+	if (!dest)
+		return (0);
+	i = 0;
+	while (s[i] != '\0')
+	{
+		dest[i] = s[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }

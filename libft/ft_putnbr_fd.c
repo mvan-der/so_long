@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   so_long.c                                          :+:    :+:            */
+/*   ft_putnbr_fd.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/09 10:46:48 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/02/09 13:50:34 by mvan-der      ########   odam.nl         */
+/*   Created: 2020/11/13 14:22:27 by mvan-der      #+#    #+#                 */
+/*   Updated: 2020/11/14 12:03:14 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int main(int argc, char *argv[])
+void	ft_putnbr_fd(int n, int fd)
 {
-	if (argc != 2)
+	if (n == -2147483648)
 	{
-		ft_printf("No map provided or too many maps provided\n");
-		return (0);
+		ft_putchar_fd('-', fd);
+		ft_putchar_fd('2', fd);
+		ft_putnbr_fd(147483648, fd);
 	}
-	char *str;
-
-	str = map_read(argv[1]);
-	ft_printf("%s\n", str);
-	// ft_printf("%c\n", str[33]);
-	// ft_printf("%c\n", str[34]);
-	// ft_printf("%c\n", str[35]);
-	return (0);
+	else if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		ft_putnbr_fd((n * -1), fd);
+	}
+	else if (n > 9)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(n % 10, fd);
+	}
+	else
+		ft_putchar_fd(n % 10 + '0', fd);
 }

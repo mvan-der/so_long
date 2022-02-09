@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   so_long.c                                          :+:    :+:            */
+/*   ft_strmapi.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/09 10:46:48 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/02/09 13:50:34 by mvan-der      ########   odam.nl         */
+/*   Created: 2020/11/13 14:41:09 by mvan-der      #+#    #+#                 */
+/*   Updated: 2020/11/26 15:06:37 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
+#include <stdlib.h>
 
-int main(int argc, char *argv[])
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	if (argc != 2)
-	{
-		ft_printf("No map provided or too many maps provided\n");
-		return (0);
-	}
-	char *str;
+	char	*str;
+	size_t	i;
 
-	str = map_read(argv[1]);
-	ft_printf("%s\n", str);
-	// ft_printf("%c\n", str[33]);
-	// ft_printf("%c\n", str[34]);
-	// ft_printf("%c\n", str[35]);
-	return (0);
+	if (!s || !f)
+		return (NULL);
+	i = 0;
+	str = (char *)malloc(sizeof(char) * ft_strlen(s) + 1);
+	if (!str)
+		return (NULL);
+	while (i < ft_strlen(s))
+	{
+		str[i] = f(i, s[i]);
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }

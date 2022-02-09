@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   so_long.c                                          :+:    :+:            */
+/*   ft_putstr_fd.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/09 10:46:48 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/02/09 13:50:34 by mvan-der      ########   odam.nl         */
+/*   Created: 2020/11/13 14:14:48 by mvan-der      #+#    #+#                 */
+/*   Updated: 2022/01/26 14:03:28 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include <unistd.h>
+#include "libft.h"
 
-int main(int argc, char *argv[])
+void	ft_putstr_fd(char *s, int fd)
 {
-	if (argc != 2)
-	{
-		ft_printf("No map provided or too many maps provided\n");
-		return (0);
-	}
-	char *str;
-
-	str = map_read(argv[1]);
-	ft_printf("%s\n", str);
-	// ft_printf("%c\n", str[33]);
-	// ft_printf("%c\n", str[34]);
-	// ft_printf("%c\n", str[35]);
-	return (0);
+	if (!s)
+		return ;
+	write(fd, s, ft_strlen(s));
 }

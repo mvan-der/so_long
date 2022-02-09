@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   so_long.c                                          :+:    :+:            */
+/*   ft_tolower.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/09 10:46:48 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/02/09 13:50:34 by mvan-der      ########   odam.nl         */
+/*   Created: 2020/10/28 14:33:16 by mvan-der      #+#    #+#                 */
+/*   Updated: 2021/03/09 16:10:12 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-
-int main(int argc, char *argv[])
+int	ft_tolower(int c)
 {
-	if (argc != 2)
+	if (c >= 'A' && c <= 'Z')
 	{
-		ft_printf("No map provided or too many maps provided\n");
-		return (0);
+		c = c + 32;
+		return (c);
 	}
-	char *str;
-
-	str = map_read(argv[1]);
-	ft_printf("%s\n", str);
-	// ft_printf("%c\n", str[33]);
-	// ft_printf("%c\n", str[34]);
-	// ft_printf("%c\n", str[35]);
-	return (0);
+	else
+	{
+		return (c);
+	}
 }

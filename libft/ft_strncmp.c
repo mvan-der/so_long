@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   so_long.c                                          :+:    :+:            */
+/*   ft_strncmp.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/09 10:46:48 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/02/09 13:50:34 by mvan-der      ########   odam.nl         */
+/*   Created: 2020/08/31 10:29:05 by mvan-der      #+#    #+#                 */
+/*   Updated: 2021/03/09 16:18:32 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include <stddef.h>
 
-int main(int argc, char *argv[])
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	if (argc != 2)
-	{
-		ft_printf("No map provided or too many maps provided\n");
-		return (0);
-	}
-	char *str;
+	unsigned char	*a;
+	unsigned char	*b;
+	size_t			i;
 
-	str = map_read(argv[1]);
-	ft_printf("%s\n", str);
-	// ft_printf("%c\n", str[33]);
-	// ft_printf("%c\n", str[34]);
-	// ft_printf("%c\n", str[35]);
+	a = (unsigned char *)s1;
+	b = (unsigned char *)s2;
+	i = 0;
+	while ((a[i] != '\0' || b[i] != '\0') && i < n)
+	{
+		if (a[i] != b[i])
+			return (a[i] - b[i]);
+		i++;
+	}
 	return (0);
 }

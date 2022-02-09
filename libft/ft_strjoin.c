@@ -1,30 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   so_long.c                                          :+:    :+:            */
+/*   ft_strjoin.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/09 10:46:48 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/02/09 13:50:34 by mvan-der      ########   odam.nl         */
+/*   Created: 2020/11/07 12:39:57 by mvan-der      #+#    #+#                 */
+/*   Updated: 2020/11/26 15:04:53 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
+#include <stdlib.h>
 
-int main(int argc, char *argv[])
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	if (argc != 2)
-	{
-		ft_printf("No map provided or too many maps provided\n");
-		return (0);
-	}
-	char *str;
+	char	*newstr;
+	size_t	i;
+	size_t	j;
 
-	str = map_read(argv[1]);
-	ft_printf("%s\n", str);
-	// ft_printf("%c\n", str[33]);
-	// ft_printf("%c\n", str[34]);
-	// ft_printf("%c\n", str[35]);
-	return (0);
+	if (!s1 || !s2)
+		return (0);
+	newstr = ft_calloc(sizeof(char), ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!newstr)
+		return (0);
+	i = 0;
+	j = 0;
+	while (s1[i] != '\0')
+	{
+		newstr[j] = s1[i];
+		i++;
+		j++;
+	}
+	i = 0;
+	while (s2[i] != '\0')
+	{
+		newstr[j] = s2[i];
+		i++;
+		j++;
+	}
+	return (newstr);
 }

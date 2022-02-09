@@ -1,30 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   so_long.c                                          :+:    :+:            */
+/*   ft_substr.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/09 10:46:48 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/02/09 13:50:34 by mvan-der      ########   odam.nl         */
+/*   Created: 2020/11/05 10:56:02 by mvan-der      #+#    #+#                 */
+/*   Updated: 2020/11/26 11:13:46 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
+#include <stdlib.h>
 
-int main(int argc, char *argv[])
+char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
-	if (argc != 2)
-	{
-		ft_printf("No map provided or too many maps provided\n");
-		return (0);
-	}
-	char *str;
+	char	*dest;
+	size_t	i;
+	size_t	check;
 
-	str = map_read(argv[1]);
-	ft_printf("%s\n", str);
-	// ft_printf("%c\n", str[33]);
-	// ft_printf("%c\n", str[34]);
-	// ft_printf("%c\n", str[35]);
-	return (0);
+	if (!s)
+		return (0);
+	check = ft_strlen(s);
+	dest = malloc(sizeof(char) * len + 1);
+	if (dest == 0)
+		return (0);
+	i = 0;
+	if (start > check)
+	{
+		dest[i] = '\0';
+		return (dest);
+	}
+	while (s[start] != '\0' && i < len)
+	{
+		dest[i] = s[start];
+		i++;
+		start++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }

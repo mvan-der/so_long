@@ -1,30 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   so_long.c                                          :+:    :+:            */
+/*   ft_memmove.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/09 10:46:48 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/02/09 13:50:34 by mvan-der      ########   odam.nl         */
+/*   Created: 2020/11/03 15:01:27 by mvan-der      #+#    #+#                 */
+/*   Updated: 2020/11/14 15:02:22 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int main(int argc, char *argv[])
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	if (argc != 2)
-	{
-		ft_printf("No map provided or too many maps provided\n");
-		return (0);
-	}
-	char *str;
+	char		*dptr;
+	const char	*sptr;
+	char		*enddest;
+	const char	*endsrc;
 
-	str = map_read(argv[1]);
-	ft_printf("%s\n", str);
-	// ft_printf("%c\n", str[33]);
-	// ft_printf("%c\n", str[34]);
-	// ft_printf("%c\n", str[35]);
-	return (0);
+	dptr = dest;
+	sptr = src;
+	enddest = dptr + (n - 1);
+	endsrc = sptr + (n - 1);
+	if (dptr == NULL && sptr == NULL)
+		return (0);
+	if (enddest < endsrc)
+	{
+		ft_memcpy(dest, src, n);
+		return (dest);
+	}
+	while (n)
+	{
+		*enddest = *endsrc;
+		enddest--;
+		endsrc--;
+		n--;
+	}
+	return (dest);
 }

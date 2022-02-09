@@ -1,30 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   so_long.c                                          :+:    :+:            */
+/*   ft_conv_csdi.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/09 10:46:48 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/02/09 13:50:34 by mvan-der      ########   odam.nl         */
+/*   Created: 2021/12/13 18:18:31 by mvan-der      #+#    #+#                 */
+/*   Updated: 2021/12/22 13:59:50 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "ft_printf.h"
 
-int main(int argc, char *argv[])
+void	ft_conv_c(va_list arguments)
 {
-	if (argc != 2)
-	{
-		ft_printf("No map provided or too many maps provided\n");
-		return (0);
-	}
-	char *str;
+	ft_putchar(va_arg(arguments, int));
+}
 
-	str = map_read(argv[1]);
-	ft_printf("%s\n", str);
-	// ft_printf("%c\n", str[33]);
-	// ft_printf("%c\n", str[34]);
-	// ft_printf("%c\n", str[35]);
-	return (0);
+void	ft_conv_s(va_list arguments)
+{
+	char	*s;
+
+	s = va_arg(arguments, char *);
+	if (s == NULL)
+		ft_putstr("(null)");
+	else
+		ft_putstr(s);
+}
+
+void	ft_conv_di(va_list arguments)
+{
+	int		i;
+	char	*str;
+
+	i = va_arg(arguments, int);
+	str = ft_itoa_printf(i, 10);
+	ft_putstr(str);
+	free(str);
 }

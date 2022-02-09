@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   so_long.c                                          :+:    :+:            */
+/*   ft_strtrim.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/09 10:46:48 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/02/09 13:50:34 by mvan-der      ########   odam.nl         */
+/*   Created: 2020/11/07 13:05:27 by mvan-der      #+#    #+#                 */
+/*   Updated: 2022/01/26 14:03:56 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int main(int argc, char *argv[])
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	if (argc != 2)
-	{
-		ft_printf("No map provided or too many maps provided\n");
-		return (0);
-	}
-	char *str;
+	char			*trimstr;
+	unsigned int	i;
+	unsigned int	j;
 
-	str = map_read(argv[1]);
-	ft_printf("%s\n", str);
-	// ft_printf("%c\n", str[33]);
-	// ft_printf("%c\n", str[34]);
-	// ft_printf("%c\n", str[35]);
-	return (0);
+	if (!s1 || !set)
+		return (0);
+	i = 0;
+	while (i < ft_strlen(s1) && ft_strchr(set, s1[i]))
+		i++;
+	j = ft_strlen(s1);
+	while (j > i && ft_strchr(set, s1[j]))
+		j--;
+	trimstr = ft_substr(s1, i, (j - i + 1));
+	return (trimstr);
 }

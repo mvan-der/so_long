@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   so_long.c                                          :+:    :+:            */
+/*   conv_p.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/09 10:46:48 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/02/09 13:50:34 by mvan-der      ########   odam.nl         */
+/*   Created: 2021/12/13 18:47:04 by mvan-der      #+#    #+#                 */
+/*   Updated: 2021/12/22 13:56:26 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "ft_printf.h"
 
-int main(int argc, char *argv[])
+void	ft_conv_p(va_list arguments)
 {
-	if (argc != 2)
-	{
-		ft_printf("No map provided or too many maps provided\n");
-		return (0);
-	}
-	char *str;
+	void				*p;
+	unsigned long int	i;
+	char				*str;
+	char				*res;
 
-	str = map_read(argv[1]);
-	ft_printf("%s\n", str);
-	// ft_printf("%c\n", str[33]);
-	// ft_printf("%c\n", str[34]);
-	// ft_printf("%c\n", str[35]);
-	return (0);
+	p = va_arg(arguments, void *);
+	if (p == NULL)
+	{
+		ft_putstr("0x0");
+		return ;
+	}
+	i = (unsigned long int) p;
+	str = ft_utoa_printf(i, 16, 'x');
+	res = ft_strjoin("0x", str);
+	ft_putstr(res);
+	free(str);
+	free(res);
 }

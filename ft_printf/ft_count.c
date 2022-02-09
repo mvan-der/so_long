@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   so_long.c                                          :+:    :+:            */
+/*   ft_count.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/09 10:46:48 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/02/09 13:50:34 by mvan-der      ########   odam.nl         */
+/*   Created: 2021/12/13 17:16:34 by mvan-der      #+#    #+#                 */
+/*   Updated: 2021/12/22 13:55:03 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-
-int main(int argc, char *argv[])
+static int	ft_reset_count(int count)
 {
-	if (argc != 2)
-	{
-		ft_printf("No map provided or too many maps provided\n");
-		return (0);
-	}
-	char *str;
+	if (count == 0)
+		return (count);
+	count = (count / count) - 1;
+	return (count);
+}
 
-	str = map_read(argv[1]);
-	ft_printf("%s\n", str);
-	// ft_printf("%c\n", str[33]);
-	// ft_printf("%c\n", str[34]);
-	// ft_printf("%c\n", str[35]);
-	return (0);
+int	ft_count(int plus)
+{
+	static int	count = 0;
+
+	if (plus == -1)
+	{
+		count = ft_reset_count(count);
+		return (count);
+	}
+	count = count + plus;
+	return (count);
 }

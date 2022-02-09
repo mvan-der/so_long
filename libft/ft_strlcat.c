@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   so_long.c                                          :+:    :+:            */
+/*   ft_strlcat.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/09 10:46:48 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/02/09 13:50:34 by mvan-der      ########   odam.nl         */
+/*   Created: 2020/09/02 10:44:15 by mvan-der      #+#    #+#                 */
+/*   Updated: 2020/11/19 14:09:29 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int main(int argc, char *argv[])
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-	if (argc != 2)
-	{
-		ft_printf("No map provided or too many maps provided\n");
-		return (0);
-	}
-	char *str;
+	size_t	destlen;
+	size_t	i;
 
-	str = map_read(argv[1]);
-	ft_printf("%s\n", str);
-	// ft_printf("%c\n", str[33]);
-	// ft_printf("%c\n", str[34]);
-	// ft_printf("%c\n", str[35]);
-	return (0);
+	i = 0;
+	destlen = ft_strlen(dest);
+	if (size > destlen)
+	{
+		while (src[i] != '\0' && i < (size - destlen - 1))
+		{
+			dest[destlen + i] = src[i];
+			i++;
+		}
+		dest[destlen + i] = '\0';
+		return (destlen + ft_strlen(src));
+	}
+	return (size + ft_strlen(src));
 }

@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   so_long.c                                          :+:    :+:            */
+/*   ft_strnstr.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/09 10:46:48 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/02/09 13:50:34 by mvan-der      ########   odam.nl         */
+/*   Created: 2020/10/28 17:05:34 by mvan-der      #+#    #+#                 */
+/*   Updated: 2020/11/26 15:06:59 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include <stddef.h>
 
-int main(int argc, char *argv[])
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	if (argc != 2)
-	{
-		ft_printf("No map provided or too many maps provided\n");
-		return (0);
-	}
-	char *str;
+	char	*pbig;
+	size_t	i;
+	size_t	j;
 
-	str = map_read(argv[1]);
-	ft_printf("%s\n", str);
-	// ft_printf("%c\n", str[33]);
-	// ft_printf("%c\n", str[34]);
-	// ft_printf("%c\n", str[35]);
-	return (0);
+	pbig = (char *)big;
+	i = 0;
+	if (little[i] == '\0')
+		return (pbig);
+	while (pbig[i] != '\0' && i < len)
+	{
+		j = 0;
+		while (pbig[i + j] == little[j] && i + j < len)
+		{
+			if (little[j + 1] == '\0')
+				return (&pbig[i]);
+			j++;
+		}
+		i++;
+	}
+	return (NULL);
 }

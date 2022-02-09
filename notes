@@ -1,7 +1,7 @@
 All errors return "Error\n"
 
 map check
-
+	provided as argument
  	outside walls
  	1 starting position, at least 1 collectible, 1 exit.
 	rectangular

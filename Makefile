@@ -6,7 +6,7 @@
 #    By: mvan-der <mvan-der@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/12/16 16:32:49 by mvan-der      #+#    #+#                  #
-#    Updated: 2022/02/09 13:51:36 by mvan-der      ########   odam.nl          #
+#    Updated: 2022/02/15 14:39:29 by mvan-der      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ MLXLIB = libmlx.dylib
 FTPRINTFDIR = ./ft_printf/
 FTPRINTFLIB = libftprintf.a
 
-SRCS = so_long.c map_read.c
+SRCS = so_long.c map_read.c free_stuff.c
 
 SRCOBJ = $(SRCS:.c=.o)
 

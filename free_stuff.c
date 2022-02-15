@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   so_long.h                                          :+:    :+:            */
+/*   free_stuff.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/09 10:51:43 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/02/15 14:41:09 by mvan-der      ########   odam.nl         */
+/*   Created: 2022/02/15 14:35:52 by mvan-der      #+#    #+#                 */
+/*   Updated: 2022/02/15 14:41:01 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "so_long.h"
 
-#define MAPERROR "Error\n"
-
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <math.h>
-#include "./mlx/mlx.h"
-#include "./ft_printf/ft_printf.h"
-
-typedef struct	s_map
+static void	ft_free_array(char **result)
 {
-	char	**map;
-	char	*output;
-}				t_map;
+	int	i;
 
-int		map_read(char *file, t_map *test12);
-void	ft_free_all(t_map *map);
+	i = 0;
+	while (result[i])
+	{
+		free(result[i]);
+		i++;
+	}
+	free(result);
+}
 
-#endif
+void	ft_free_all(t_map *map)
+{
+	ft_free_array(map->map);
+	free(map->output);
+	free(map);
+}

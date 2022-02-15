@@ -6,7 +6,7 @@
 #    By: mvan-der <mvan-der@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/12/16 16:32:49 by mvan-der      #+#    #+#                  #
-#    Updated: 2022/02/15 14:39:29 by mvan-der      ########   odam.nl          #
+#    Updated: 2022/02/15 16:39:59 by mvan-der      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,9 @@ CFLAGS = -Wall -Wextra -Werror
 
 MLXDIR = ./mlx/
 MLXLIB = libmlx.dylib
+MLX = $(MLXDIR)$(MLXLIB)
 FTPRINTFDIR = ./ft_printf/
-FTPRINTFLIB = libftprintf.a
+FTPRINTFLIB = $(FTPRINTFDIR)libftprintf.a
 
 SRCS = so_long.c map_read.c free_stuff.c
 
@@ -28,19 +29,19 @@ SRCOBJ = $(SRCS:.c=.o)
 GREEN = \033[0;32m
 RED = \033[0;31m
 
-all: $(NAME)
+all: $(NAME) $(FTPRINTFLIB) $(MLX)
 
-$(NAME): $(SRCOBJ) $(FTPRINTFLIB) $(MLXLIB)
-	$(CC) $(SRCOBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(FTPRINTFDIR)$(FTPRINTFLIB)
-	cp $(MLXDIR)$(MLXLIB) ./
+$(NAME): $(SRCOBJ) $(FTPRINTFLIB) $(MLX)
+	$(CC) $(SRCOBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(FTPRINTFLIB)
+	cp $(MLX) ./
 	
 %.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
-$(FTPRINTFLIB): $(SRCOBJ)
+$(FTPRINTFLIB):
 	$(MAKE) -C $(FTPRINTFDIR)
 
-$(MLXLIB): $(SRCOBJ)
+$(MLX):
 	$(MAKE) -C $(MLXDIR)
 
 clean:
@@ -55,4 +56,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all mlx clean fclean re
+.PHONY: all ft_printf mlx clean fclean re

@@ -6,7 +6,7 @@
 #    By: mvan-der <mvan-der@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/11/06 13:44:38 by mvan-der      #+#    #+#                  #
-#    Updated: 2022/02/09 12:11:57 by mvan-der      ########   odam.nl          #
+#    Updated: 2022/02/15 16:34:43 by mvan-der      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ HEADERS = ft_printf.h
 
 CFLAGS = -Wall -Wextra -Werror
 
-LIBFTDIR = ../libft/
-LIBFTLIB = libft.a
+LIBFTDIR = ./libft/
+LIBFTLIB = ./libft/libft.a
 
 SRCS = ft_conv_csdi.c ft_conv_p.c ft_conv_uxX.c ft_count.c \
 ft_printf.c ft_putchar_printf.c ft_putstr_printf.c \
@@ -25,16 +25,16 @@ ft_spec_conv.c ft_itoa_printf.c ft_utoa_printf.c
 
 SRCOBJ = $(SRCS:.c=.o)
 
-all: $(NAME)
+all: $(NAME) $(LIBFTLIB)
 
 $(NAME): $(SRCOBJ) $(LIBFTLIB)
-	cp $(LIBFTDIR)$(LIBFTLIB) ./$(NAME)
+	cp $(LIBFTLIB) ./$(NAME)
 	ar crs $(NAME) $(SRCOBJ)
 
 %.o : %.c $(HEADERS)
 	$(CC) -c $(CFLAGS) -o $@ $<
 
-$(LIBFTLIB): $(SRCOBJ)
+$(LIBFTLIB):
 	$(MAKE) -C $(LIBFTDIR)
 
 clean:

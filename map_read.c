@@ -6,7 +6,7 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/09 12:45:18 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/01 14:32:44 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/01 16:23:57 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ static int	map_walls_check(t_img *game)
 			return (1);
 		i--;
 	}
-	ft_printf("max x: %d, max y: %d\n", game->max_x, game->max_y);
 	return (0);
 }
 

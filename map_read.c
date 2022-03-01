@@ -6,46 +6,49 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/09 12:45:18 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/02/15 14:41:52 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/01 14:32:44 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	map_walls_check(t_map *map)
+static int	map_walls_check(t_img *game)
 {
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	map->map = ft_split(map->output, '\n');
-	while (map->map[i][j])
+	game->map = ft_split(game->output, '\n');
+	while (game->map[i][j])
 	{
-		if (map->map[i][j] != '1')
+		if (game->map[i][j] != '1')
 			return (1);
 		j++;
 	}
+	game->max_x = j;
 	j--;
-	while (map->map[i])
+	while (game->map[i])
 	{
-		if (map->map[i][j] != '1')
+		if (game->map[i][j] != '1')
 			return (1);
 		i++;
 	}
+	game->max_y = i;
 	i--;
 	while (j > 0)
 	{
-		if (map->map[i][j] != '1')
+		if (game->map[i][j] != '1')
 			return (1);
 		j--;
 	}
 	while (i > 0)
 	{
-		if (map->map[i][j] != '1')
+		if (game->map[i][j] != '1')
 			return (1);
 		i--;
 	}
+	ft_printf("max x: %d, max y: %d\n", game->max_x, game->max_y);
 	return (0);
 }
 
@@ -70,10 +73,7 @@ static int	size_count(char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-	{
-		ft_printf("%s", MAPERROR);
-		return (0);
-	}
+		return (1);
 	count = 0;
 	ret = 1;
 	while (ret > 0)
@@ -85,16 +85,16 @@ static int	size_count(char *file)
 	return (count);
 }
 
-int	map_read(char *file, t_map *map)
+int	map_read(char *file, t_img *game)
 {
 	int		fd;
 	int		ret;
 
-	map->output = ft_calloc(sizeof(char), size_count(file) + 1);
+	game->output = ft_calloc(sizeof(char), size_count(file) + 1);
 	fd = open(file, O_RDONLY);
-	ret = read(fd, map->output, size_count(file));
+	ret = read(fd, game->output, size_count(file));
 	close(fd);
-	if (map_objectives_check(map->output) == 0 && map_walls_check(map) == 0)
+	if (map_objectives_check(game->output) == 0 && map_walls_check(game) == 0)
 		return (0);
 	else
 		return (1);

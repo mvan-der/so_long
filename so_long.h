@@ -6,7 +6,7 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/09 10:51:43 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/02 12:55:48 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/02 16:58:46 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@
 # define MAPERROR "Error: Invalid map\n"
 # define IMGERROR "Error: Image files missing or corrupted\n"
 # define GAMEWIN "Congratulations! You have won the game!"
-# define GAMENOTOVER "You have not completed the game yet!"
+# define GAMENOTOVER "You have not collected all the collectibles yet!"
+# define TOTALMOVES "Total number of moves needed: "
 # define KEY_ESC 53
 # define KEY_W 13
-# define KEY_A 1
-# define KEY_S 0
+# define KEY_S 1
+# define KEY_A 0
 # define KEY_D 2
 
 # include <unistd.h>

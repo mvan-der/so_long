@@ -6,7 +6,7 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/02 12:28:52 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/02 12:50:05 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/02 16:54:59 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,19 @@ void	ft_key_basic(t_img *keys, int keycode)
 		keys->player_pos_y = keys->player_pos_y - keys->img_height;
 		keys->player_i--;
 	}
-	if (keycode == KEY_A)
+	if (keycode == KEY_S)
 	{
 		keys->player_pos_y = keys->player_pos_y + keys->img_height;
 		keys->player_i++;
 	}
-	if (keycode == KEY_S)
+	if (keycode == KEY_A)
 	{
-		keys->player_pos_y = keys->player_pos_x - keys->img_width;
+		keys->player_pos_x = keys->player_pos_x - keys->img_width;
 		keys->player_j--;
 	}
 	if (keycode == KEY_D)
 	{
-		keys->player_pos_y = keys->player_pos_x + keys->img_width;
+		keys->player_pos_x = keys->player_pos_x + keys->img_width;
 		keys->player_j++;
 	}
 }

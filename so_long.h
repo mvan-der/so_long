@@ -6,26 +6,33 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/09 10:51:43 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/01 16:55:01 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/02 12:55:48 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-#define MAPERROR "Invalid map\n"
-#define GAMEWIN "Congratulations! You have won the game!"
+# define NOMAPERROR "Error: No map or too many maps provided\n"
+# define MAPERROR "Error: Invalid map\n"
+# define IMGERROR "Error: Image files missing or corrupted\n"
+# define GAMEWIN "Congratulations! You have won the game!"
+# define GAMENOTOVER "You have not completed the game yet!"
+# define KEY_ESC 53
+# define KEY_W 13
+# define KEY_A 1
+# define KEY_S 0
+# define KEY_D 2
 
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <math.h>
-#include "./mlx/mlx.h"
-#include "./ft_printf/ft_printf.h"
+# include <unistd.h>
+# include <fcntl.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <math.h>
+# include "./mlx/mlx.h"
+# include "./ft_printf/ft_printf.h"
 
-
-typedef struct	s_img
+typedef struct s_img
 {
 	void	*img;
 	char	*addr;
@@ -46,7 +53,7 @@ typedef struct	s_img
 	char	**map;
 	void	*wall;
 	void	*ground;
-	void	*collectible;
+	void	*coll;
 	void	*exit;
 	void	*player;
 	int		player_i;
@@ -59,8 +66,16 @@ typedef struct	s_img
 
 int		map_read(char *file, t_img *game);
 void	ft_free_map(t_img *game);
-void	map_build(t_img *game);
+void	ft_map_build(t_img *game);
 void	open_xpm(t_img *game);
 int		close_window(t_img *release);
 int		key_press(int keycode, t_img *keys);
+void	ft_init(t_img *game);
+void	ft_wall_image(t_img *game);
+void	ft_ground_image(t_img *game);
+void	ft_coll_image(t_img *game);
+void	ft_exit_image(t_img *game);
+void	ft_player_image(t_img *game, int i, int j);
+void	ft_key_basic(t_img *keys, int keycode);
+void	ft_key_img_push(t_img *keys);
 #endif

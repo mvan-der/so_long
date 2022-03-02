@@ -6,20 +6,19 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/09 12:45:18 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/01 16:23:57 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/02 10:59:28 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	map_walls_check(t_img *game)
+static int	ft_map_walls_check(t_img *game)
 {
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	game->map = ft_split(game->output, '\n');
 	while (game->map[i][j])
 	{
 		if (game->map[i][j] != '1')
@@ -51,7 +50,7 @@ static int	map_walls_check(t_img *game)
 	return (0);
 }
 
-static int	map_objectives_check(char *check)
+static int	ft_map_obj_check(char *check)
 {
 	if (!ft_strchr(check, 'P'))
 		return (1);
@@ -63,7 +62,7 @@ static int	map_objectives_check(char *check)
 		return (0);
 }
 
-static int	size_count(char *file)
+static int	ft_map_size(char *file)
 {
 	int		fd;
 	int		count;
@@ -89,11 +88,12 @@ int	map_read(char *file, t_img *game)
 	int		fd;
 	int		ret;
 
-	game->output = ft_calloc(sizeof(char), size_count(file) + 1);
+	game->output = ft_calloc(sizeof(char), ft_map_size(file) + 1);
 	fd = open(file, O_RDONLY);
-	ret = read(fd, game->output, size_count(file));
+	ret = read(fd, game->output, ft_map_size(file));
 	close(fd);
-	if (map_objectives_check(game->output) == 0 && map_walls_check(game) == 0)
+	game->map = ft_split(game->output, '\n');
+	if (ft_map_obj_check(game->output) == 0 && ft_map_walls_check(game) == 0)
 		return (0);
 	else
 		return (1);

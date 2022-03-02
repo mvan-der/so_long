@@ -8,40 +8,44 @@ int	close_window(t_img *release)
 
 int	key_press(int keycode, t_img *keys)
 {
-	if (keycode == 53)
+	if (keycode == KEY_ESC)
 		close_window(keys);
-	if (keycode == 13)
+	if (keycode == KEY_W)
 	{
-		keys->move_count++;
+		
 		if(keys->map[keys->player_i - 1][keys->player_j] == '1')
-			return(ft_printf("Number of moves: %d\n", keys->move_count));
+			return (0);
 		if(keys->map[keys->player_i - 1][keys->player_j] == 'C')
 		{
 			keys->map[keys->player_i - 1][keys->player_j] = '0';
 			keys->col_count--;
+			keys->move_count++;
 		}
 		if(keys->map[keys->player_i - 1][keys->player_j] == 'E')
 		{
 			if(keys->col_count == 0)
 			{
+				keys->move_count++;
+				ft_printf("Number of moves: %d\n", keys->move_count);
 				ft_printf("\033[0;32m%s\e[0m\n", GAMEWIN);
-				close_window(keys);
+				return (close_window(keys));
 			}
 			else
 			{
-				ft_printf("\033[0;31mYou have not completed the game yet!\e[0m\n");
+				ft_printf("\033[0;31m%s\e[0m\n", GAMENOTOVER);
 				return(ft_printf("Number of moves: %d\n", keys->move_count));
 			}
 		}
-		keys->pos_x = keys->player_pos_x;
-		keys->pos_y = keys->player_pos_y;
-		keys->player_pos_y = keys->player_pos_y - 50;
-		keys->player_i--;
+			keys->move_count++;
+			keys->pos_x = keys->player_pos_x;
+			keys->pos_y = keys->player_pos_y;
+			keys->player_pos_y = keys->player_pos_y - 50;
+			keys->player_i--;
 		mlx_put_image_to_window(keys->mlx_ptr, keys->mlx_win, keys->player, keys->player_pos_x, keys->player_pos_y);
 		mlx_put_image_to_window(keys->mlx_ptr, keys->mlx_win, keys->ground, keys->pos_x, keys->pos_y);
 		ft_printf("Number of moves: %d\n", keys->move_count);
 	}
-	if (keycode == 1)
+	if (keycode == KEY_A)
 	{
 		keys->move_count++;
 		if(keys->map[keys->player_i + 1][keys->player_j] == '1')
@@ -72,7 +76,7 @@ int	key_press(int keycode, t_img *keys)
 		mlx_put_image_to_window(keys->mlx_ptr, keys->mlx_win, keys->ground, keys->pos_x, keys->pos_y);
 		ft_printf("Number of moves: %d\n", keys->move_count);
 	}
-	if (keycode == 0)
+	if (keycode == KEY_S)
 	{
 		keys->move_count++;
 		if(keys->map[keys->player_i][keys->player_j - 1] == '1')
@@ -103,7 +107,7 @@ int	key_press(int keycode, t_img *keys)
 		mlx_put_image_to_window(keys->mlx_ptr, keys->mlx_win, keys->ground, keys->pos_x, keys->pos_y);
 		ft_printf("Number of moves: %d\n", keys->move_count);
 	}
-	if (keycode == 2)
+	if (keycode == KEY_D)
 	{
 		keys->move_count++;
 		if(keys->map[keys->player_i][keys->player_j + 1] == '1')

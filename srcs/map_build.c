@@ -6,11 +6,11 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/02 10:53:04 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/03 12:01:16 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/03 12:14:03 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
 
 static void	ft_update(t_img *game)
 {

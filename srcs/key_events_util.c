@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   key_press_util.c                                   :+:    :+:            */
+/*   key_events_util.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/02 12:28:52 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/03 11:18:52 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/03 12:13:59 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
 
 void	ft_key_coll(t_img *keys, int keycode)
 {

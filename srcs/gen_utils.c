@@ -6,11 +6,11 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/15 14:35:52 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/03 12:05:23 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/03 12:13:29 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
 
 static void	ft_free_array(char **result)
 {

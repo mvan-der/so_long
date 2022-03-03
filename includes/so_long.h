@@ -6,7 +6,7 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/09 10:51:43 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/03 12:06:13 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/03 12:15:01 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
-# include "./mlx/mlx.h"
-# include "./ft_printf/ft_printf.h"
+# include "../mlx/mlx.h"
+# include "../ft_printf/ft_printf.h"
 
 typedef struct s_img
 {

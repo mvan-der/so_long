@@ -6,11 +6,11 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/02 16:56:21 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/03 09:12:35 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/03 12:13:45 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
 
 int	close_window(t_img *release)
 {

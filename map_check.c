@@ -6,11 +6,25 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/09 12:45:18 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/02 10:59:28 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/03 11:53:09 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static int	ft_strcheck(char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] != c)
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 static int	ft_map_walls_check(t_img *game)
 {
@@ -19,14 +33,9 @@ static int	ft_map_walls_check(t_img *game)
 
 	i = 0;
 	j = 0;
-	while (game->map[i][j])
-	{
-		if (game->map[i][j] != '1')
-			return (1);
-		j++;
-	}
-	game->max_x = j;
-	j--;
+	if (!ft_strcheck(game->map[i], '1'))
+		return (1);
+	game->max_x = ft_strlen(game->map[i]);
 	while (game->map[i])
 	{
 		if (game->map[i][j] != '1')
@@ -35,12 +44,8 @@ static int	ft_map_walls_check(t_img *game)
 	}
 	game->max_y = i;
 	i--;
-	while (j > 0)
-	{
-		if (game->map[i][j] != '1')
-			return (1);
-		j--;
-	}
+	if (!ft_strcheck(game->map[i], '1'))
+		return (1);
 	while (i > 0)
 	{
 		if (game->map[i][j] != '1')
@@ -83,7 +88,7 @@ static int	ft_map_size(char *file)
 	return (count);
 }
 
-int	map_read(char *file, t_img *game)
+int	ft_map_read(char *file, t_img *game)
 {
 	int		fd;
 	int		ret;
@@ -93,6 +98,11 @@ int	map_read(char *file, t_img *game)
 	ret = read(fd, game->output, ft_map_size(file));
 	close(fd);
 	game->map = ft_split(game->output, '\n');
+	if (!game->map)
+	{
+		ft_free_map(game);
+		return (1);
+	}
 	if (ft_map_obj_check(game->output) == 0 && ft_map_walls_check(game) == 0)
 		return (0);
 	else

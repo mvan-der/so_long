@@ -1,18 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   open_xpm.c                                         :+:    :+:            */
+/*   gen_utils.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/03/02 10:54:09 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/02 12:18:04 by mvan-der      ########   odam.nl         */
+/*   Created: 2022/02/15 14:35:52 by mvan-der      #+#    #+#                 */
+/*   Updated: 2022/03/03 12:05:23 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	open_xpm(t_img *game)
+static void	ft_free_array(char **result)
+{
+	int	i;
+
+	i = 0;
+	while (result[i])
+	{
+		free(result[i]);
+		i++;
+	}
+	free(result);
+}
+
+void	ft_free_map(t_img *game)
+{
+	ft_free_array(game->map);
+	free(game->output);
+	free(game);
+}
+
+void	ft_load_images(t_img *game)
 {
 	game->wall = mlx_xpm_file_to_image(game->mlx_ptr, "./img/wall.xpm", \
 	&game->img_width, &game->img_height);

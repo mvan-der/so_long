@@ -6,7 +6,7 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/03 08:59:23 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/03 09:13:19 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/03 11:17:08 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	ft_key_s(t_img *keys, int keycode)
 		ft_key_exit(keys);
 	ft_key_basic(keys, keycode);
 	ft_key_img_push(keys);
+	return (0);
 }
 
 int	ft_key_a(t_img *keys, int keycode)
@@ -47,6 +48,7 @@ int	ft_key_a(t_img *keys, int keycode)
 		ft_key_exit(keys);
 	ft_key_basic(keys, keycode);
 	ft_key_img_push(keys);
+	return (0);
 }
 
 int	ft_key_d(t_img *keys, int keycode)
@@ -59,4 +61,5 @@ int	ft_key_d(t_img *keys, int keycode)
 		ft_key_exit(keys);
 	ft_key_basic(keys, keycode);
 	ft_key_img_push(keys);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/09 10:51:43 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/03 09:05:00 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/03 12:06:13 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +65,23 @@ typedef struct s_img
 	int		col_count;
 }				t_img;
 
-int		map_read(char *file, t_img *game);
+int		ft_map_read(char *file, t_img *game);
 void	ft_free_map(t_img *game);
+void	ft_load_images(t_img *game);
 void	ft_map_build(t_img *game);
-void	open_xpm(t_img *game);
-int		close_window(t_img *release);
-int		key_press(int keycode, t_img *keys);
-void	ft_init(t_img *game);
 void	ft_wall_image(t_img *game);
 void	ft_ground_image(t_img *game);
 void	ft_coll_image(t_img *game);
 void	ft_exit_image(t_img *game);
 void	ft_player_image(t_img *game, int i, int j);
+int		key_press(int keycode, t_img *keys);
+int		close_window(t_img *release);
+int		ft_key_w(t_img *keys, int keycode);
+int		ft_key_s(t_img *keys, int keycode);
+int		ft_key_a(t_img *keys, int keycode);
+int		ft_key_d(t_img *keys, int keycode);
+void	ft_key_coll(t_img *keys, int keycode);
+void	ft_key_exit(t_img *keys);
 void	ft_key_basic(t_img *keys, int keycode);
 void	ft_key_img_push(t_img *keys);
-void	ft_key_exit(t_img *keys);
-void	ft_key_coll(t_img *keys, int keycode);
 #endif

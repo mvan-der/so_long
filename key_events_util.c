@@ -6,7 +6,7 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/02 12:28:52 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/03 09:05:04 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/03 11:18:52 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	ft_key_exit(t_img *keys)
 		keys->move_count++;
 		ft_printf("\033[0;32m%s\e[0m\n", GAMEWIN);
 		ft_printf("\033[0;32m%s%d\e[0m\n", TOTALMOVES, keys->move_count);
-		return (close_window(keys));
+		close_window(keys);
 	}
 	else
-		return (ft_printf("\033[0;31m%s\e[0m\n", GAMENOTOVER));
+		ft_printf("\033[0;31m%s\e[0m\n", GAMENOTOVER);
 }
 
 void	ft_key_basic(t_img *keys, int keycode)

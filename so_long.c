@@ -6,11 +6,25 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/09 10:46:48 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/02 12:41:11 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/03 12:05:18 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static void	ft_init(t_img *game)
+{
+	game->move_count = 0;
+	game->col_count = 0;
+	game->win_width = game->max_x * 50;
+	game->win_height = game->max_y * 50;
+	game->pos_x = 0;
+	game->pos_y = 0;
+	game->mlx_ptr = mlx_init();
+	game->mlx_win = mlx_new_window(game->mlx_ptr, game->win_width, \
+	game->win_height, "so_long v0.4");
+	ft_load_images(game);
+}
 
 int	main(int argc, char **argv)
 {
@@ -18,10 +32,9 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (ft_printf("\033[0;31m%s\e[0m", NOMAPERROR));
-	if (map_read(argv[1], &game) == 1)
+	if (ft_map_read(argv[1], &game) == 1)
 	{
 		ft_printf("\033[0;31m%s\e[0m", MAPERROR);
-		ft_free_map(&game);
 		return (0);
 	}
 	ft_init(&game);

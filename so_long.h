@@ -6,7 +6,7 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/09 10:51:43 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/02 16:58:46 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/03 09:05:00 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,6 @@ void	ft_exit_image(t_img *game);
 void	ft_player_image(t_img *game, int i, int j);
 void	ft_key_basic(t_img *keys, int keycode);
 void	ft_key_img_push(t_img *keys);
+void	ft_key_exit(t_img *keys);
+void	ft_key_coll(t_img *keys, int keycode);
 #endif

@@ -6,7 +6,7 @@
 #    By: mvan-der <mvan-der@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/12/16 16:32:49 by mvan-der      #+#    #+#                  #
-#    Updated: 2022/03/03 12:39:58 by mvan-der      ########   odam.nl          #
+#    Updated: 2022/03/03 12:44:21 by mvan-der      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,11 @@ SRCS = so_long.c srcs/gen_utils.c srcs/image_build.c srcs/key_events.c srcs/key_
 
 SRCOBJ = $(SRCS:.c=.o)
 
-GREEN = \033[0;32m
-RED = \033[0;31m
+BLU			= \033[0;34m
+GRN			= \033[0;32m
+RED			= \033[0;31m
+RST			= \033[0m
+END			= \e[0m
 
 all: $(NAME) $(FTPRINTFLIB) $(MLX)
 
@@ -48,11 +51,13 @@ clean:
 	rm -f $(SRCOBJ)
 	$(MAKE) -C $(MLXDIR) $@
 	$(MAKE) -C $(FTPRINTFDIR) $@
+	echo "${GRN}[CLEAN]${RST} done"
 
 fclean: clean
 	rm -f $(NAME)
 	rm -f $(MLXLIB)
 	$(MAKE) -C $(FTPRINTFDIR) $@
+	echo "${GRN}[CLEAN]${RST} done"
 
 re: fclean all
 

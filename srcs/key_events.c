@@ -6,60 +6,76 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/03 08:59:23 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/03 12:13:55 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/04 11:01:20 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	ft_key_w(t_img *keys, int keycode)
+int	ft_key(t_img *keys, int keycode, int dx, int dy)
 {
-	if (keys->map[keys->player_i - 1][keys->player_j] == '1')
+	if (keys->map[keys->player_i + dy][keys->player_j + dx] == '1')
 		return (0);
-	if (keys->map[keys->player_i - 1][keys->player_j] == 'C')
-		ft_key_coll(keys, keycode);
-	if (keys->map[keys->player_i - 1][keys->player_j] == 'E')
+	if (keys->map[keys->player_i + dy][keys->player_j + dx] == 'C')
+	{
+		keys->col_count--;
+		keys->map[keys->player_i + dy][keys->player_j + dx] = '0';
+	}
+	if (keys->map[keys->player_i + dy][keys->player_j + dx] == 'E')
+	{
 		ft_key_exit(keys);
+		return (0);
+	}
 	ft_key_basic(keys, keycode);
 	ft_key_img_push(keys);
 	return (0);
 }
 
-int	ft_key_s(t_img *keys, int keycode)
+void	ft_key_exit(t_img *keys)
 {
-	if (keys->map[keys->player_i + 1][keys->player_j] == '1')
-		return (0);
-	if (keys->map[keys->player_i + 1][keys->player_j] == 'C')
-		ft_key_coll(keys, keycode);
-	if (keys->map[keys->player_i + 1][keys->player_j] == 'E')
-		ft_key_exit(keys);
-	ft_key_basic(keys, keycode);
-	ft_key_img_push(keys);
-	return (0);
+	if (keys->col_count == 0)
+	{
+		keys->move_count++;
+		ft_printf("\033[0;32m%s\e[0m\n", GAMEWIN);
+		ft_printf("\033[0;32m%s%d\e[0m\n", TOTALMOVES, keys->move_count);
+		close_window(keys);
+	}
+	else
+		ft_printf("\033[0;31m%s%d\e[0m\n", GAMENOTOVER, keys->col_count);
 }
 
-int	ft_key_a(t_img *keys, int keycode)
+void	ft_key_basic(t_img *keys, int keycode)
 {
-	if (keys->map[keys->player_i][keys->player_j - 1] == '1')
-		return (0);
-	if (keys->map[keys->player_i][keys->player_j - 1] == 'C')
-		ft_key_coll(keys, keycode);
-	if (keys->map[keys->player_i][keys->player_j - 1] == 'E')
-		ft_key_exit(keys);
-	ft_key_basic(keys, keycode);
-	ft_key_img_push(keys);
-	return (0);
+	keys->move_count++;
+	keys->pos_x = keys->player_pos_x;
+	keys->pos_y = keys->player_pos_y;
+	if (keycode == KEY_W)
+	{
+		keys->player_pos_y = keys->player_pos_y - keys->img_height;
+		keys->player_i--;
+	}
+	if (keycode == KEY_S)
+	{
+		keys->player_pos_y = keys->player_pos_y + keys->img_height;
+		keys->player_i++;
+	}
+	if (keycode == KEY_A)
+	{
+		keys->player_pos_x = keys->player_pos_x - keys->img_width;
+		keys->player_j--;
+	}
+	if (keycode == KEY_D)
+	{
+		keys->player_pos_x = keys->player_pos_x + keys->img_width;
+		keys->player_j++;
+	}
 }
 
-int	ft_key_d(t_img *keys, int keycode)
+void	ft_key_img_push(t_img *keys)
 {
-	if (keys->map[keys->player_i][keys->player_j + 1] == '1')
-		return (0);
-	if (keys->map[keys->player_i][keys->player_j + 1] == 'C')
-		ft_key_coll(keys, keycode);
-	if (keys->map[keys->player_i][keys->player_j + 1] == 'E')
-		ft_key_exit(keys);
-	ft_key_basic(keys, keycode);
-	ft_key_img_push(keys);
-	return (0);
+	mlx_put_image_to_window(keys->mlx_ptr, keys->mlx_win, keys->player, \
+	keys->player_pos_x, keys->player_pos_y);
+	mlx_put_image_to_window(keys->mlx_ptr, keys->mlx_win, keys->ground, \
+	keys->pos_x, keys->pos_y);
+	ft_printf("Number of moves: %d\n", keys->move_count);
 }

@@ -6,7 +6,7 @@
 #    By: mvan-der <mvan-der@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/12/16 16:32:49 by mvan-der      #+#    #+#                  #
-#    Updated: 2022/03/03 12:44:21 by mvan-der      ########   odam.nl          #
+#    Updated: 2022/03/04 10:57:43 by mvan-der      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ MLX = $(MLXDIR)$(MLXLIB)
 FTPRINTFDIR = ./ft_printf/
 FTPRINTFLIB = $(FTPRINTFDIR)libftprintf.a
 
-SRCS = so_long.c srcs/gen_utils.c srcs/image_build.c srcs/key_events.c srcs/key_events_util.c srcs/key_hooks.c srcs/map_build.c srcs/map_check.c
+SRCS = srcs/so_long.c srcs/gen_utils.c srcs/image_build.c srcs/key_events.c srcs/key_hooks.c srcs/map_build.c srcs/map_check.c
 
 SRCOBJ = $(SRCS:.c=.o)
 

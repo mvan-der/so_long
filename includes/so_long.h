@@ -6,7 +6,7 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/09 10:51:43 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/03 12:15:01 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/04 11:02:16 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define MAPERROR "Error: Invalid map\n"
 # define IMGERROR "Error: Image files missing or corrupted\n"
 # define GAMEWIN "Congratulations! You have won the game!"
-# define GAMENOTOVER "You have not collected all the collectibles yet!"
+# define GAMENOTOVER "You have not collected all the collectibles yet!\nCollectibles still needed: "
 # define TOTALMOVES "Total number of moves needed: "
 # define KEY_ESC 53
 # define KEY_W 13
@@ -76,11 +76,7 @@ void	ft_exit_image(t_img *game);
 void	ft_player_image(t_img *game, int i, int j);
 int		key_press(int keycode, t_img *keys);
 int		close_window(t_img *release);
-int		ft_key_w(t_img *keys, int keycode);
-int		ft_key_s(t_img *keys, int keycode);
-int		ft_key_a(t_img *keys, int keycode);
-int		ft_key_d(t_img *keys, int keycode);
-void	ft_key_coll(t_img *keys, int keycode);
+int		ft_key(t_img *keys, int keycode, int dx, int dy);
 void	ft_key_exit(t_img *keys);
 void	ft_key_basic(t_img *keys, int keycode);
 void	ft_key_img_push(t_img *keys);

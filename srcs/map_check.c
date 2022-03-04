@@ -6,7 +6,7 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/09 12:45:18 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/03 12:14:07 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/04 11:33:40 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,26 +29,25 @@ static int	ft_strcheck(char *s, int c)
 static int	ft_map_walls_check(t_img *game)
 {
 	int		i;
-	int		j;
 
 	i = 0;
-	j = 0;
 	if (!ft_strcheck(game->map[i], '1'))
 		return (1);
-	game->max_x = ft_strlen(game->map[i]);
+	game->max_x = 0;
 	while (game->map[i])
 	{
-		if (game->map[i][j] != '1')
+		if (game->map[i][game->max_x] != '1')
 			return (1);
 		i++;
 	}
 	game->max_y = i;
 	i--;
+	game->max_x = ft_strlen(game->map[i]);
 	if (!ft_strcheck(game->map[i], '1'))
 		return (1);
 	while (i > 0)
 	{
-		if (game->map[i][j] != '1')
+		if (game->map[i][game->max_x - 1] != '1')
 			return (1);
 		i--;
 	}

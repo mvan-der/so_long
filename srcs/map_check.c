@@ -6,7 +6,7 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/09 12:45:18 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/04 11:33:40 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/08 12:05:41 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,30 @@ static int	ft_map_walls_check(t_img *game)
 	return (0);
 }
 
-static int	ft_map_obj_check(char *check)
+static int	ft_char_check(char *check)
 {
-	if (!ft_strchr(check, 'P'))
-		return (1);
-	if (!ft_strchr(check, 'E'))
-		return (1);
-	if (!ft_strchr(check, 'C'))
-		return (1);
-	else
-		return (0);
+	int		i;
+	char	set[7];
+
+	i = 0;
+	ft_strlcpy(set, "01CEP\n", 7);
+	while (check[i])
+	{
+		if (!ft_strchr(set, check[i]))
+			return (1);
+		if (check[i] == 'E')
+		{
+			set[ft_charpos(set, 'E')] = set[ft_strlen(set) - 1];
+			set[ft_strlen(set) - 1] = '\0';
+		}
+		if (check[i] == 'P')
+		{
+			set[ft_charpos(set, 'P')] = set[ft_strlen(set) - 1];
+			set[ft_strlen(set) - 1] = '\0';
+		}
+		i++;
+	}
+	return (0);
 }
 
 static int	ft_map_size(char *file)
@@ -102,7 +116,7 @@ int	ft_map_read(char *file, t_img *game)
 		ft_free_map(game);
 		return (1);
 	}
-	if (ft_map_obj_check(game->output) == 0 && ft_map_walls_check(game) == 0)
+	if (ft_char_check(game->output) == 0 && ft_map_walls_check(game) == 0)
 		return (0);
 	else
 		return (1);

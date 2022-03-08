@@ -6,11 +6,25 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/15 14:35:52 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/03 12:13:29 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/08 12:04:10 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+int	ft_charpos(char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+			return (i);
+		i++;
+	}
+	return (0);
+}
 
 static void	ft_free_array(char **result)
 {

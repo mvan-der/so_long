@@ -6,7 +6,7 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/09 10:51:43 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/04 11:02:16 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/08 11:58:52 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_img
 }				t_img;
 
 int		ft_map_read(char *file, t_img *game);
+int		ft_charpos(char *s, int c);
 void	ft_free_map(t_img *game);
 void	ft_load_images(t_img *game);
 void	ft_map_build(t_img *game);

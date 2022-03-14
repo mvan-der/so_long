@@ -6,7 +6,7 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/09 10:51:43 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/14 15:13:31 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/14 16:41:36 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 # define MAPERROR "Error: Invalid map provided\n"
 # define IMGERROR "Error: Image files missing or corrupted\n"
 # define GAMEWIN "Congratulations! You have won the game!"
-# define GAMENOTOVER "You have not collected all the collectibles yet!\nCollectibles still needed: "
+# define GAMENOTOVER "You have not collected all the collectibles yet!\nCollectibles \
+still needed: "
 # define TOTALMOVES "Total number of moves needed: "
 # define KEY_ESC 53
 # define KEY_W 13

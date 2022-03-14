@@ -6,7 +6,7 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/09 10:46:48 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/14 15:13:36 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/14 16:45:26 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	ft_init(t_img *game)
 	game->pos_y = 0;
 	game->mlx_ptr = mlx_init();
 	game->mlx_win = mlx_new_window(game->mlx_ptr, game->win_width, \
-	game->win_height, "so_long v0.8");
+	game->win_height, "so_long v1.0");
 	ft_load_images(game);
 }
 

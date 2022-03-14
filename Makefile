@@ -6,7 +6,7 @@
 #    By: mvan-der <mvan-der@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/12/16 16:32:49 by mvan-der      #+#    #+#                  #
-#    Updated: 2022/03/04 10:57:43 by mvan-der      ########   odam.nl          #
+#    Updated: 2022/03/14 14:13:05 by mvan-der      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,27 +37,29 @@ all: $(NAME) $(FTPRINTFLIB) $(MLX)
 $(NAME): $(SRCOBJ) $(FTPRINTFLIB) $(MLX)
 	$(CC) $(SRCOBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(FTPRINTFLIB)
 	cp $(MLX) ./
+	@echo "${GRN}[$(NAME)]${RST} done"
 	
 %.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 $(FTPRINTFLIB):
 	$(MAKE) -C $(FTPRINTFDIR)
+	@echo "${GRN}[FT_PRINTF + LIBFT]${RST} done"
 
 $(MLX):
 	$(MAKE) -C $(MLXDIR)
+	@echo "${GRN}[MLX]${RST} done"
 
 clean:
 	rm -f $(SRCOBJ)
 	$(MAKE) -C $(MLXDIR) $@
-	$(MAKE) -C $(FTPRINTFDIR) $@
-	echo "${GRN}[CLEAN]${RST} done"
+	@echo "${GRN}[CLEAN]${RST} done"
 
 fclean: clean
 	rm -f $(NAME)
 	rm -f $(MLXLIB)
 	$(MAKE) -C $(FTPRINTFDIR) $@
-	echo "${GRN}[CLEAN]${RST} done"
+	@echo "${GRN}[FCLEAN]${RST} done"
 
 re: fclean all
 

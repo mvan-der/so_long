@@ -6,17 +6,11 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/02 10:53:04 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/04 11:26:07 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/14 15:07:04 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-static void	ft_update(t_img *game)
-{
-	game->pos_y += 50;
-	game->pos_x = 0;
-}
 
 void	ft_map_build(t_img *game)
 {
@@ -24,9 +18,9 @@ void	ft_map_build(t_img *game)
 	int	j;
 
 	i = 0;
-	j = 0;
 	while (game->map && i < game->max_y)
 	{
+		j = 0;
 		while (game->map[i][j])
 		{
 			if (game->map[i][j] == '1')
@@ -41,8 +35,8 @@ void	ft_map_build(t_img *game)
 				ft_player_image(game, i, j);
 			j++;
 		}
-		ft_update(game);
-		j = 0;
+		game->pos_y += 64;
+		game->pos_x = 0;
 		i++;
 	}
 }

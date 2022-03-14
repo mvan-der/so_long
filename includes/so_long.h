@@ -6,7 +6,7 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/09 10:51:43 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/08 11:58:52 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/14 14:30:55 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define SO_LONG_H
 
 # define NOMAPERROR "Error: No map or too many maps provided\n"
-# define MAPERROR "Error: Invalid map\n"
+# define MAPERROR "Error: Invalid map provided\n"
 # define IMGERROR "Error: Image files missing or corrupted\n"
 # define GAMEWIN "Congratulations! You have won the game!"
 # define GAMENOTOVER "You have not collected all the collectibles yet!\nCollectibles still needed: "
@@ -65,18 +65,30 @@ typedef struct s_img
 	int		col_count;
 }				t_img;
 
-int		ft_map_read(char *file, t_img *game);
+/* gen_utils.c */
 int		ft_charpos(char *s, int c);
+int		ft_strcheck(char *s, int c);
 void	ft_free_map(t_img *game);
 void	ft_load_images(t_img *game);
-void	ft_map_build(t_img *game);
+
+/* image_build.c */
 void	ft_wall_image(t_img *game);
 void	ft_ground_image(t_img *game);
 void	ft_coll_image(t_img *game);
 void	ft_exit_image(t_img *game);
 void	ft_player_image(t_img *game, int i, int j);
+
+/* map_build.c */
+void	ft_map_build(t_img *game);
+
+/* map_check.c */
+int		ft_map_read(char *file, t_img *game);
+
+/* key_hooks.c */
 int		key_press(int keycode, t_img *keys);
 int		close_window(t_img *release);
+
+/* key_events.c */
 int		ft_key(t_img *keys, int keycode, int dx, int dy);
 void	ft_key_exit(t_img *keys);
 void	ft_key_basic(t_img *keys, int keycode);

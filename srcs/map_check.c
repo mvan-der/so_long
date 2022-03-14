@@ -6,25 +6,11 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/09 12:45:18 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/08 12:05:41 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/14 14:05:36 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-static int	ft_strcheck(char *s, int c)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] != c)
-			return (0);
-		i++;
-	}
-	return (1);
-}
 
 static int	ft_map_walls_check(t_img *game)
 {
@@ -89,7 +75,7 @@ static int	ft_map_size(char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		return (1);
+		return (fd);
 	count = 0;
 	ret = 1;
 	while (ret > 0)
@@ -106,10 +92,16 @@ int	ft_map_read(char *file, t_img *game)
 	int		fd;
 	int		ret;
 
+	if (ft_map_size(file) < 0)
+		return (1);
 	game->output = ft_calloc(sizeof(char), ft_map_size(file) + 1);
+	if (!game->output)
+		return (1);
 	fd = open(file, O_RDONLY);
 	ret = read(fd, game->output, ft_map_size(file));
 	close(fd);
+	if (ret < 0)
+		return (1);
 	game->map = ft_split(game->output, '\n');
 	if (!game->map)
 	{

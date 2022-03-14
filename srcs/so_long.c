@@ -6,7 +6,7 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/09 10:46:48 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/14 14:47:28 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/14 15:13:36 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (ft_printf("\033[0;31m%s\e[0m", NOMAPERROR));
+	if (!ft_strstr(argv[1], ".ber"))
+		return (ft_printf("\033[0;31m%s\e[0m", WRONGFORMAT));
 	if (ft_map_read(argv[1], &game) == 1)
 	{
 		ft_printf("\033[0;31m%s\e[0m", MAPERROR);

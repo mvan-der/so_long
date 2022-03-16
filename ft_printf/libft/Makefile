@@ -6,12 +6,13 @@
 #    By: mvan-der <mvan-der@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/11/06 13:44:38 by mvan-der      #+#    #+#                  #
-#    Updated: 2022/01/26 14:03:04 by mvan-der      ########   odam.nl          #
+#    Updated: 2022/03/16 12:14:46 by mvan-der      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 HEADER = libft.h
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 SRCS = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \

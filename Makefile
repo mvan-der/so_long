@@ -6,7 +6,7 @@
 #    By: mvan-der <mvan-der@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/12/16 16:32:49 by mvan-der      #+#    #+#                  #
-#    Updated: 2022/03/14 14:13:05 by mvan-der      ########   odam.nl          #
+#    Updated: 2022/03/16 12:14:02 by mvan-der      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME = so_long
 
 HEADERS = so_long.h
 
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 MLXDIR = ./mlx/

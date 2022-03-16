@@ -6,7 +6,7 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/09 12:45:18 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/14 14:05:36 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/16 12:38:39 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ static int	ft_char_check(char *check)
 	char	set[7];
 
 	i = 0;
+	if (!ft_strchr(check, 'C') || !ft_strchr(check, 'E') || \
+	!ft_strchr(check, 'P'))
+		return (1);
 	ft_strlcpy(set, "01CEP\n", 7);
 	while (check[i])
 	{

@@ -6,7 +6,7 @@
 #    By: mvan-der <mvan-der@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/11/06 13:44:38 by mvan-der      #+#    #+#                  #
-#    Updated: 2022/02/15 16:34:43 by mvan-der      ########   odam.nl          #
+#    Updated: 2022/03/16 12:14:57 by mvan-der      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME = libftprintf.a
 
 HEADERS = ft_printf.h
 
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 LIBFTDIR = ./libft/

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_putchar.c                                       :+:    :+:            */
+/*   ft_put_printf.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/13 17:16:36 by mvan-der      #+#    #+#                 */
-/*   Updated: 2021/12/20 09:41:32 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/16 12:54:16 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,11 @@
 void	ft_putchar(int c)
 {
 	ft_count(write(1, &c, 1));
+}
+
+void	ft_putstr(char *s)
+{
+	if (!s)
+		return ;
+	ft_count(write(1, s, ft_strlen(s)));
 }

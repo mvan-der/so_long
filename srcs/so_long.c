@@ -6,7 +6,7 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/09 10:46:48 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/16 13:38:44 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/17 12:19:42 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	ft_init(t_img *game)
 	game->pos_y = 0;
 	game->mlx_ptr = mlx_init();
 	game->mlx_win = mlx_new_window(game->mlx_ptr, game->win_width, \
-	game->win_height, "so_long v1.0");
+	game->win_height, "so_long v1.01");
 	ft_load_images(game);
 }
 
@@ -35,10 +35,7 @@ int	main(int argc, char **argv)
 	if (!ft_strstr(argv[1], ".ber"))
 		return (ft_printf("\033[0;31m%s\e[0m", WRONGFORMAT));
 	if (ft_map_read(argv[1], &game) == 1)
-	{
-		ft_printf("\033[0;31m%s\e[0m", MAPERROR);
-		return (0);
-	}
+		return (ft_printf("\033[0;31m%s\e[0m", MAPERROR));
 	ft_init(&game);
 	ft_map_build(&game);
 	mlx_hook(game.mlx_win, 2, 0, key_press, &game);

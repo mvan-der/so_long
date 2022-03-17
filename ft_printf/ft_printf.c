@@ -6,7 +6,7 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/13 18:16:10 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/16 13:34:06 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/17 12:20:26 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 int	ft_count(int plus)
 {
 	static int	count = 0;
+	int			total;
 
 	if (plus == 0)
 	{
-		int total;
 		total = count;
 		count = 0;
 		return (total);

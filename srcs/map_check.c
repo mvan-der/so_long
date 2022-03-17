@@ -6,11 +6,19 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/09 12:45:18 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/16 12:38:39 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/17 12:14:41 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+static int	ft_check_size(t_img *game)
+{
+	if (game->max_x * 64 > MAXWINW || game->max_y * 64 > MAXWINH)
+		return (1);
+	else
+		return (0);
+}
 
 static int	ft_map_walls_check(t_img *game)
 {
@@ -19,16 +27,16 @@ static int	ft_map_walls_check(t_img *game)
 	i = 0;
 	if (!ft_strcheck(game->map[i], '1'))
 		return (1);
-	game->max_x = 0;
+	game->max_x = ft_strlen(game->map[i]);
 	while (game->map[i])
 	{
-		if (game->map[i][game->max_x] != '1')
+		if (game->map[i][0] != '1' || \
+		ft_strlen(game->map[i]) != (size_t)game->max_x)
 			return (1);
 		i++;
 	}
 	game->max_y = i;
 	i--;
-	game->max_x = ft_strlen(game->map[i]);
 	if (!ft_strcheck(game->map[i], '1'))
 		return (1);
 	while (i > 0)
@@ -37,10 +45,10 @@ static int	ft_map_walls_check(t_img *game)
 			return (1);
 		i--;
 	}
-	return (0);
+	return (ft_check_size(game));
 }
 
-static int	ft_char_check(char *check)
+static int	ft_input_check(char *check)
 {
 	int		i;
 	char	set[7];
@@ -101,6 +109,8 @@ int	ft_map_read(char *file, t_img *game)
 	if (!game->output)
 		return (1);
 	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (1);
 	ret = read(fd, game->output, ft_map_size(file));
 	close(fd);
 	if (ret < 0)
@@ -111,7 +121,7 @@ int	ft_map_read(char *file, t_img *game)
 		ft_free_map(game);
 		return (1);
 	}
-	if (ft_char_check(game->output) == 0 && ft_map_walls_check(game) == 0)
+	if (ft_input_check(game->output) == 0 && ft_map_walls_check(game) == 0)
 		return (0);
 	else
 		return (1);

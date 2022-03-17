@@ -6,17 +6,17 @@
 /*   By: mvan-der <mvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/09 10:51:43 by mvan-der      #+#    #+#                 */
-/*   Updated: 2022/03/14 16:41:36 by mvan-der      ########   odam.nl         */
+/*   Updated: 2022/03/17 12:14:29 by mvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# define NOMAPERROR "Error: No map or too many maps provided\n"
-# define WRONGFORMAT "Error: Wrong map format provided\n"
-# define MAPERROR "Error: Invalid map provided\n"
-# define IMGERROR "Error: Image files missing or corrupted\n"
+# define NOMAPERROR "Error\nNo map or too many maps provided\n"
+# define WRONGFORMAT "Error\nWrong map format provided\n"
+# define MAPERROR "Error\nInvalid map provided\n"
+# define IMGERROR "Error\nImage files missing or corrupted\n"
 # define GAMEWIN "Congratulations! You have won the game!"
 # define GAMENOTOVER "You have not collected all the collectibles yet!\nCollectibles \
 still needed: "
@@ -26,6 +26,8 @@ still needed: "
 # define KEY_S 1
 # define KEY_A 0
 # define KEY_D 2
+# define MAXWINW 3840
+# define MAXWINH 1440
 
 # include <unistd.h>
 # include <fcntl.h>
